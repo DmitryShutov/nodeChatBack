@@ -1,12 +1,11 @@
 const app = require('http').createServer();
+const mongo = require('./db');
 const socket = require('socket.io')(app);
-
-app.listen(3100);
+mongo.connect();
+//app.listen(3100);
 
 socket.on('connection', () => {
-    console.log('connect');
+    console.log('connect to socket');
 })
 
-
-
-
+mongo.db.on('connected', () => console.log('connect'));
