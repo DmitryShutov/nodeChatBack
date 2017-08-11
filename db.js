@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbUrl = 'mongodb://localhost/chat';
+const dbUrl = 'mongodb://62.173.145.68/chat';
 const databaseInstance = null;
 
 const mongo = {
