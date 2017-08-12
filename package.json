@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "mongoose": "^4.11.6",
+    "mongoose-unique-validator": "^1.0.5",
     "nodemon": "^1.11.0",
     "socket.io": "^2.0.3"
   },
