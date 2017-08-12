@@ -7,4 +7,6 @@ const schema = new Schema({
     messages,
 })
 
+schema.plugin
+
 module.exports = mongoose.model('User', schema);
