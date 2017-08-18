@@ -1,6 +1,6 @@
 var app = require('express')();
 var server = require('http').Server(app);
-var socket = require('socket.io')(server);
+var io = require('socket.io')(server);
 const mongo = require('./db');
 
 const onRegistrate = require('./registraion');
@@ -12,9 +12,9 @@ server.listen(3100);
 
 const activeUsers = 
 
-socket.on('connection', (client) => {
-    onRegistrate(client);
-    onLogin(client);  
+io.on('connection', (socket) => {
+    onRegistrate(socket);
+    onLogin(socket);  
 })
 
 process.on('SIGINT', () => {
