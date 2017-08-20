@@ -1,10 +1,7 @@
-const User = require('./models/user');
-const onRegistrate = (socket) => {
-    return socket.on('registrate', function(userData){
-        const user = new User(userData);
-        user.save();
+const UserList = require('./usersList');
+this.onRegistrate = (socket) => {
+    return socket.on('registrate', (userData) => {
+        UserList.saveUser(userData)
         socket.emit('success'); 
     });
 }
-
-module.exports = onRegistrate;

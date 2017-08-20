@@ -1,16 +1,15 @@
-const User = require('./models/user');
+const UserList = require('./usersList');
+const App = require('./app');
+
 const onLogin = (socket) => {
     return socket.on('login', (credentials) => {
-        User.findOne({login: credentials.login, password: credentials.password}, (err, user) => {
-            if (err) {
-                console.log(err);
-            } else {
-                // add auth token next
-                socket.emit('login', {result: 'success'}); 
-                console.log(user);
-            }            
-        })
+        UserList.hasUser({login: credentials.login, password: credentials.password}, (data) => {
+            socket.emit('login', {result: 'success', user: data});
+        });
     })
+};
+
+module.exports = {
+    onLogin: onLogin,
 }
 
-module.exports = onLogin;
