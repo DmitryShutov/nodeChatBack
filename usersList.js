@@ -19,7 +19,6 @@ class UsersClass {
     }
 
     hasUser(user, onSuccess) {
-        console.log(user);
         this.schema.findOne({login: user.login, password: user.password}, (err, user) => {
             if (err) {
                 console.error('error', err);
@@ -29,10 +28,16 @@ class UsersClass {
         });
     }
 
-    async getUsersList() {
-        const result = await this.schema.find({});
-        console.log(result);
-        return result;
+    getUsersList() {
+        this.schema.find({}, (err, userLists) => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log(userLists);
+                userLists.forEach(user => console.log(user));
+                onSuccess(userLists);
+            }
+        });
     }
 }
 

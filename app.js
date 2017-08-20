@@ -16,11 +16,11 @@ server.listen(3100);
 io.on('connection', (socket) => {
     registration.onRegistrate(socket);
     login.onLogin(socket);
-})
-
-io.on('getUsersList', async (socket) => {
-    const list = await this.usersList.getUsersList();
-    io.emit('usersList', list);
+    socket.on('users', (socket) => {
+        console.log(socket)
+        const list = usersList.getUsersList(socket.emit('users', list));
+        console.log(list);
+    })
 })
 
 process.on('SIGINT', () => {
