@@ -28,14 +28,13 @@ class UsersClass {
         });
     }
 
-    getUsersList() {
-        this.schema.find({}, (err, userLists) => {
+    getUsersList(onSuccess) {
+        this.schema.find({}, (err, usersList) => {
             if (err) {
                 console.error(err);
             } else {
-                console.log(userLists);
-                userLists.forEach(user => console.log(user));
-                onSuccess(userLists);
+                usersList.forEach(user => console.log(user));
+                onSuccess(usersList);
             }
         });
     }

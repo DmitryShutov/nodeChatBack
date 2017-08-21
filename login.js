@@ -1,5 +1,4 @@
 const UserList = require('./usersList');
-const App = require('./app');
 
 const onLogin = (socket) => {
     return socket.on('login', (credentials) => {
