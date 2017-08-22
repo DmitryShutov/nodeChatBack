@@ -1,7 +1,7 @@
-const UserList = require('./usersList');
+const UserList = require('./usersList')
 this.onRegistrate = (socket) => {
-    return socket.on('registrate', (userData) => {
-        UserList.saveUser(userData)
-        socket.emit('success'); 
-    });
+  return socket.on('registrate', (userData) => {
+    UserList.saveUser(userData)
+    socket.emit('success')
+  })
 }

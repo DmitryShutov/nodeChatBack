@@ -1,25 +1,24 @@
-const app = require('express')();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-const mongo = require('./db');
+const app = require('express')()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+const mongo = require('./db')
 
-const registration = require('./registraion');
-const login = require('./login');
-const usersList = require('./usersList');
-const users = require('./user');
+const registration = require('./registraion')
+const login = require('./login')
+const users = require('./user')
 
-mongo.connect();
+mongo.connect()
 
-this.currentUsers = [];
+this.currentUsers = []
 
-server.listen(3100);
+server.listen(3100)
 
 io.on('connection', (socket) => {
-    registration.onRegistrate(socket);
-    login.onLogin(socket);
-    users.onGetUsersList(socket);
+  registration.onRegistrate(socket)
+  login.onLogin(socket)
+  users.onGetUsersList(socket)
 })
 
 process.on('SIGINT', () => {
-    mongo.close();
+  mongo.close()
 })

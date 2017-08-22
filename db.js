@@ -1,16 +1,16 @@
-const mongoose = require('mongoose');
-const dbUrl = 'mongodb://62.173.145.68/chat';
-const databaseInstance = null;
+const mongoose = require('mongoose')
+const dbUrl = 'mongodb://62.173.145.68/chat'
 
 const mongo = {
-    connect: () => {
-        mongoose.connect(dbUrl, {useMongoClient: true});
-    },
-    db: mongoose.connection,
-    close: () => mongoose.connection.close(() =>{ console.log('db connection closed'), process.exit(0) })
+  connect: () => {
+    mongoose.connect(dbUrl, {useMongoClient: true})
+  },
+  db: mongoose.connection,
+  close: () => mongoose.connection.close(() => {
+    console.log('db connection closed'); process.exit(0)
+  })
 }
 
-mongo.db.on('connected', () => console.log('connect'));
+mongo.db.on('connected', () => console.log('connect'))
 
-
-module.exports = mongo;
+module.exports = mongo
