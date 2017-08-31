@@ -1,8 +1,10 @@
 const schema = require('./models/user')
+const util = require('util')
 class UsersClass {
   constructor () {
     this.Schema = schema
     this.activeUsers = []
+    this.findUser = util.promisify(this.Schema.findOne)
   }
 
   addUser (user) {
@@ -19,12 +21,15 @@ class UsersClass {
   }
 
   hasUser (user, onSuccess) {
+    this.findUser({login: user.login, password: user.password}).then((data) => {
+      console.log('promisify', data)
+    }).catch((err) => console.log(err))
     this.Schema.findOne({login: user.login, password: user.password}, (err, user) => {
       if (err) {
         console.error('error', err)
-      } else {
-        onSuccess({login: user.login, id: user._id})
+        return
       }
+      onSuccess({login: user.login, id: user._id});
     })
   }
 
